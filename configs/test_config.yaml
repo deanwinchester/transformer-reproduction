@@ -1,0 +1,40 @@
+# Test Configuration for Quick Demo
+# ==================================
+# Small model and dataset for fast testing
+
+model_size: test
+
+# Model Architecture (Small)
+d_model: 64               # Small model dimension
+n_heads: 4                # 4 attention heads
+d_ff: 256                 # Small FFN
+n_encoder_layers: 2       # Only 2 layers
+n_decoder_layers: 2
+dropout: 0.1
+
+# Vocabulary (Small)
+src_vocab_size: 1000      # Match tokenizer vocab
+tgt_vocab_size: 1000
+max_len: 100
+
+# Training (Fast)
+epochs: 5                 # Just 5 epochs
+batch_size: 4             # Small batch
+warmup_steps: 100
+max_grad_norm: 1.0
+label_smoothing: 0.1
+
+# Optimizer
+beta1: 0.9
+beta2: 0.98
+eps: 1e-9
+
+# Data
+train_max_len: 50
+val_max_len: 50
+
+# Checkpointing
+save_interval: 1
+keep_last_n: 3
+
+fp16: false

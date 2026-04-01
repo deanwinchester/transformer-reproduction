@@ -1,0 +1,45 @@
+# Transformer Base Model Configuration
+# =====================================
+# Based on "Attention Is All You Need" (Vaswani et al., 2017)
+
+model_size: base
+
+# Model Architecture
+d_model: 512              # 模型维度
+n_heads: 8                # 注意力头数
+d_ff: 2048                # 前馈网络隐藏层维度
+n_encoder_layers: 6       # 编码器层数
+n_decoder_layers: 6       # 解码器层数
+dropout: 0.1              # Dropout 概率
+
+# Vocabulary
+src_vocab_size: 37000     # 源语言词汇表大小（WMT14 英德）
+tgt_vocab_size: 37000     # 目标语言词汇表大小
+max_len: 5000             # 最大序列长度
+
+# Training
+epochs: 100               # 训练轮数
+batch_size: 64            # 批次大小（token 数量约 25000）
+warmup_steps: 4000        # 学习率 warmup 步数
+max_grad_norm: 1.0        # 梯度裁剪阈值
+label_smoothing: 0.1      # 标签平滑系数
+
+# Optimizer (Adam)
+beta1: 0.9
+beta2: 0.98
+eps: 1e-9
+
+# Data
+train_max_len: 100        # 训练时最大序列长度
+val_max_len: 150          # 验证时最大序列长度
+
+# Checkpointing
+save_interval: 1          # 每 N 个 epoch 保存
+keep_last_n: 5           # 保留最近的 N 个检查点
+
+# Mixed Precision
+fp16: false              # 是否使用混合精度训练
+
+# Expected Performance (WMT14 En-De)
+# Reported BLEU: 27.3
+# This config target: >= 26.5
